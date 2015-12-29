@@ -9,9 +9,10 @@
         android:id="@+id/iv"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:padding="5dp"
         android:background="@drawable/assistive_touch_background"
         android:gravity="center"
-        android:src="@mipmap/p"
+        android:src="@mipmap/ic_launcher"
         android:textColor="#FFFFFFFF" />
 
 </RelativeLayout>
