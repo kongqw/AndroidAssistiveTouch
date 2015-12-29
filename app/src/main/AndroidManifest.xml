@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 迷你模式的Service -->
+        <service android:name=".view.AssistiveTouch" />
     </application>
 
 </manifest>
