@@ -19,7 +19,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kongqw.androidassistivetouch.R;
+import com.kongqw.androidassistivetouch.event.CenterStateEvent;
 import com.kongqw.androidassistivetouch.utils.AnimationUtil;
+
+import de.greenrobot.event.EventBus;
 
 public class AssistiveTouch extends Service implements OnTouchListener {
 
@@ -64,8 +67,15 @@ public class AssistiveTouch extends Service implements OnTouchListener {
     @Override
     public void onCreate() {
         super.onCreate();
+        EventBus.getDefault().register(this);
         // 初始化SharedPreferences
         mSharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -214,6 +224,19 @@ public class AssistiveTouch extends Service implements OnTouchListener {
             e.printStackTrace();
         }
         return true;
+    }
+
+    /**
+     * EventBus
+     *
+     * @param event
+     */
+    public void onEvent(CenterStateEvent event) {
+        if (event.isOpen()) {
+            AnimationUtil.alphaAnimation(view.findViewById(R.id.iv), false);
+        } else {
+            AnimationUtil.alphaAnimation(view.findViewById(R.id.iv), true);
+        }
     }
 
 }

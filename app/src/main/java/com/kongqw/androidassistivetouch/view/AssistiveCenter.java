@@ -1,25 +1,19 @@
 package com.kongqw.androidassistivetouch.view;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
-import android.os.Binder;
-import android.os.IBinder;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.kongqw.androidassistivetouch.R;
-import com.kongqw.androidassistivetouch.utils.AnimationUtil;
+import com.kongqw.androidassistivetouch.event.CenterStateEvent;
+
+import de.greenrobot.event.EventBus;
 
 public class AssistiveCenter implements View.OnClickListener {
 
@@ -42,6 +36,7 @@ public class AssistiveCenter implements View.OnClickListener {
         try {
             // 关闭之前打开的Toast
             hideAssistiveCenter();
+            EventBus.getDefault().post(new CenterStateEvent(true));
             // 初始化窗口的管理者
             windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             // 加载自定义布局
@@ -91,6 +86,7 @@ public class AssistiveCenter implements View.OnClickListener {
             if (null != windowManager && view != null) {
                 windowManager.removeView(view);
                 windowManager = null;
+                EventBus.getDefault().post(new CenterStateEvent(false));
             }
         } catch (Exception e) {
             e.printStackTrace();
