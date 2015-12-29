@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.kongqw.androidassistivetouch.R;
@@ -41,7 +42,7 @@ public class AssistiveCenter implements View.OnClickListener {
             windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             // 加载自定义布局
             view = View.inflate(mContext, R.layout.assistive_center, null);
-            Button home = (Button) view.findViewById(R.id.home);
+            LinearLayout home = (LinearLayout) view.findViewById(R.id.home);
             RelativeLayout back = (RelativeLayout) view.findViewById(R.id.back);
 
             home.setOnClickListener(this);

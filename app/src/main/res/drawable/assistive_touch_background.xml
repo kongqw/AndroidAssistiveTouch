@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 渐变颜色 -->
-    <solid android:color="#AA000000" />
+    <solid android:color="#7F000000" />
     <!-- 圆角 -->
     <corners
         android:bottomLeftRadius="10dp"
